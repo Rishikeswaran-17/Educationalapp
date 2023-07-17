@@ -1,4 +1,4 @@
-//new app
+// console.log("datasubcourses =", data);
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
