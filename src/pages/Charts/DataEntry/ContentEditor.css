@@ -1,0 +1,20 @@
+.cardelementaddeditdelete {
+     /* Added this line to center the card */
+     padding-top: 20px;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-bottom: 20px;
+     width: 50%;
+     text-align: center;
+     margin: 8% auto;
+     background-color: rgb(226 232 240);
+     border-radius: 5%;
+}
+
+.Textfield1 {
+     width: 90%;
+}
+
+.SubmitButton {
+     font-size: large;
+}
