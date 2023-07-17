@@ -1,0 +1,136 @@
+.rating_with_smily_box {
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+     -ms-flex-direction: column;
+     flex-direction: column;
+     -webkit-box-align: center;
+     -ms-flex-align: center;
+     align-items: center;
+     position: relative;
+     margin-right: 15px;
+     cursor: pointer;
+}
+
+.rating_list_number {
+     width: 30px;
+     height: 30px;
+     border-radius: 100%;
+     border: 2px solid #ddd;
+     text-align: center;
+     -webkit-box-pack: center;
+     -ms-flex-pack: center;
+     justify-content: center;
+     line-height: 27px;
+     display: -webkit-inline-box;
+     display: -ms-inline-flexbox;
+     display: inline-flex;
+     cursor: pointer;
+     margin-bottom: 15px;
+     color: #42526E;
+     font-weight: 500;
+}
+
+li {
+     display: list-item;
+     text-align: -webkit-match-parent;
+}
+
+.rating_with_smily_box .rating_smily_tooltip {
+     visibility: hidden;
+     min-width: 100px;
+     background-color: #192F60;
+     color: #fff;
+     text-align: center;
+     border-radius: 6px;
+     padding: 5px 10px;
+     position: absolute;
+     z-index: 1;
+     top: -33px;
+     left: 50%;
+     margin-left: -60px;
+     -webkit-box-sizing: content-box;
+     box-sizing: content-box;
+     font-family: Poppins;
+     font-size: 10px;
+}
+
+.rating_with_smily_box.active [class^=smiley-rate-],
+.rating_with_smily_box:hover [class^=smiley-rate-] {
+     opacity: 1;
+}
+
+.smiley-rate-0 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -10px -10px;
+}
+
+.smiley-rate-1 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -74px -10px;
+}
+
+.smiley-rate-2 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -10px -73px;
+}
+
+.smiley-rate-3 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -74px -73px;
+}
+
+.smiley-rate-4 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -138px -10px;
+}
+
+.smiley-rate-5 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -138px -73px;
+}
+
+.smiley-rate-6 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -10px -136px;
+}
+
+.smiley-rate-7 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -74px -136px;
+}
+
+.smiley-rate-8 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -138px -136px;
+}
+
+.smiley-rate-9 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -202px -10px;
+}
+
+.smiley-rate-10 {
+     background: url(E:\project_syncfusion_dashboard-main\src\USER_SCREEN\assests\images\css_sprites.png) -202px -73px;
+}
+
+[class^=smiley-rate-] {
+     width: 100%;
+     height: 43px;
+     zoom: .7;
+}
+
+.smiley-rate-common {
+     position: relative;
+     opacity: .5;
+}
+
+.rating_with_smily_box,
+.rating_with_smily_container {
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+}
+
+.rating_with_smily_container {
+     margin: 20px 0;
+}
+
+#inputreferbtn {
+     height: 40px;
+     background-image: linear-gradient(113deg, #00E1FA, #06C2F5);
+     box-shadow: 0 0 35px 0 rgba(0, 0, 0, .06);
+     font-size: 14px;
+     font-weight: 700;
+     color: #fff;
+     cursor: pointer;
+}

@@ -12,8 +12,8 @@ module.exports = {
       },
       backgroundColor: {
         'main-bg': 'var(--bg-slate-200)', // Updated value
-        'main-dark-bg': 'rgba(0, 0, 0, 0.75)',
-        'secondary-dark-bg': 'rgba(0, 0, 0, 0.9)',
+        'main-dark-bg': '#1B1B29',
+        'secondary-dark-bg': '#101321',
         'light-gray': '#F7F7F7',
         'half-transparent': 'rgba(0, 0, 0, 0.8)',
       },
@@ -37,6 +37,12 @@ module.exports = {
       },
       minHeight: {
         590: '590px',
+      },
+      colors: {
+        greyBlue: "#36527c",
+        darkBlue: "#2f476a",
+        flourecentBlue: "#0098DC",
+        turquoise: "#27b0cc"
       },
     },
   },
