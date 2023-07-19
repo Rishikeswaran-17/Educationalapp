@@ -352,7 +352,7 @@ h2 {
 .cardelement10 {
     position: absolute !important;
     top: 135px;
-    margin-top:39px;
+    margin-top:28px;
     left: 1063px;
     transform: translateX(-50%);
     width: 100%;
@@ -371,28 +371,29 @@ h2 {
 
   @media only screen and (min-width: 768px) and (max-width: 1199px){
     .cardelement10{
-        margin-top:62px;
+        margin-top:26px;
         max-width: 60% ;
-        margin-left: -413px;
+        margin-left: -490px;
     }
 }
 
 
   .cardelementaddeditdelete{
-    margin-left:1130px; /* Added this line to center the card */
-    top: -340px;
+    margin-left:1530px; /* Added this line to center the card */
+    margin-top:-400px;
     padding-top: 20px;
     padding-left: 10px;
     padding-right:10px;
     padding-bottom: 20px;
     right:-10px;
     width: 10%;
+    display:content-fit
   }
   @media only screen and (min-width: 768px) and (max-width: 1199px){
     .cardelementaddeditdelete{
         margin-left: 940px;
         width:210px;
-        margin-top: -29%;
+        margin-top: -33%;
     }
   }
 

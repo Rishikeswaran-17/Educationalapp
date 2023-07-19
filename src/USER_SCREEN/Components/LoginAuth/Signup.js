@@ -48,7 +48,7 @@ const Signup = () => {
 
   return (
     <div className="bg-gray-200 h-screen">
-      <div className="container sm:w-3/5 lg:w-2/6 rounded-lg shadow-md bg-white mx-auto relative top-20 p-4">
+      <div className="sm:w-3/5 lg:w-2/6 rounded-lg shadow-md bg-white mx-auto relative top-20 p-4">
         <div className="top px-3 mt-3 flex justify-between">
           <h2 className=" text-orange-500 text-xl font-medium">
             Let's Get Started

@@ -51,6 +51,7 @@ import MyClassroom from "./USER_SCREEN/Components/Users/MyClassRoom/MyClassroom"
 import MyclassContent from "./USER_SCREEN/Components/Admin/Body/Myclassroom/MyclassContent/MyclassContent";
 import GettingStarted from "./USER_SCREEN/Components/Admin/Body/Myclassroom/GettingStarted/GettingStarted";
 import CourseContent from "./USER_SCREEN/Components/Admin/Body/Myclassroom/CourseContent/CourseContent";
+import StaffComplete from "./STAFF_SCREEN/StaffComplete/StaffComplete";
 
 const App = () => {
   const {
@@ -688,9 +689,12 @@ const App = () => {
               </>
             }
           />
+          {/* <Route path="/master" element={<StaffComplete />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
+    
+    
   );
 };
 

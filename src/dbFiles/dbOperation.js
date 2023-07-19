@@ -430,9 +430,12 @@ const savemastercourse = async (
     throw new Error("Failed to save MasterCourse");
   }
 }
-
-const Insertupdatetrainer = async ( employeeID, name, designation, courses, hiredDate, reportsTo, status, phoneNumber, location, image, payslip, monthlysalary) => {
+const Insertupdatetrainer = async (employeeID, name, designation, courses, hiredDate, reportsTo, status, phoneNumber, location, payslip, monthlysalary) => {
   try {
+    // Parse the input date in the format 'dd-mm-yyyy' and convert it to 'yyyy-mm-dd'
+    const [day, month, year] = hiredDate.split('-');
+    const formattedHiredDate = `${year}-${month}-${day}`;
+
     let pool = await sql.connect(config);
     await pool
       .request()
@@ -440,21 +443,24 @@ const Insertupdatetrainer = async ( employeeID, name, designation, courses, hire
       .input("Name", sql.VARCHAR(256), name)
       .input("Designation", sql.VARCHAR(256), designation)
       .input("Courses", sql.VARCHAR(sql.MAX), courses)
-      .input("HiredDate", sql.VARCHAR(256), hiredDate)
+      .input("HiredDate", sql.Date, formattedHiredDate) // Use the formatted date here
       .input("ReportsTo", sql.VARCHAR(256), reportsTo)
       .input("Status", sql.VARCHAR(256), status)
       .input("PhoneNumber", sql.VARCHAR(256), phoneNumber)
       .input("Location", sql.VARCHAR(256), location)
-      .input("Image", sql.VARCHAR(256), image)
       .input("Payslip", sql.INT, payslip)
       .input("Monthlysalary", sql.INT, monthlysalary)
       .execute("InsertandUpdateTrainer");
-    //console.log("InsertandUpdateTrainer Inserted successfully");
+
+    console.log("InsertandUpdateTrainer Inserted successfully");
   } catch (error) {
-    //console.log(error);
+    console.error("Error:", error);
     throw new Error("Failed to save InsertandUpdateTrainer");
   }
-}
+};
+
+
+
 const InsertupdateLearner = async (LearnerID,
   Name,
   Age,

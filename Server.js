@@ -2,7 +2,7 @@ const dbOperation = require('./src/dbFiles/dbOperation');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const fs = require('fs-extra');
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const PORT = process.env.PORT || 5000;
 const multer = require('multer');
@@ -13,11 +13,11 @@ app.use(express.json());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public', 'Contents'));
+    cb(null, path.join(__dirname, 'public', 'Contents')); // Use a temporary directory for uploads
   },
   filename: (req, file, cb) => {
-    const fileName = uuidv4() + path.extname(file.originalname);
-    cb(null, fileName);
+    // Preserve the original file name provided by the client
+    cb(null, file.originalname);
   },
 });
 
@@ -43,23 +43,26 @@ app.post('/course-content', upload.single('file'), async (req, res) => {
       throw new Error('No file uploaded');
     }
 
-    const fileName = file.filename;
+    const fileName = file.originalname; // Use the original file name
     const filePath = file.path;
 
-    console.log('File:', fileName);
-    console.log('Destination path:', filePath);
+    // Use a different destination path to avoid "Source and destination must not be the same"
+    const destinationPath = path.join(__dirname, 'public', 'Contents', fileName);
 
-    // Move the file to the destination path
-    await fs.move(filePath, path.join(__dirname, 'public', 'Contents', fileName));
+    console.log('File:', fileName);
+    console.log('Destination path:', destinationPath);
+
+    // Use fs.copyFileSync to copy the file to the destination path
+    fs.copyFileSync(filePath, destinationPath);
 
     // Call the dbOperation function to save the file information to the database
     console.log('Saving course content to the database');
-    await dbOperation.courseContent(courseId, fileName, filePath, description, chapterid);
+    await dbOperation.courseContent(courseId, fileName, destinationPath, description, chapterid);
     console.log('Course content saved to the database');
 
     res.status(200).json({ message: 'courseContent saved successfully' });
   } catch (error) {
-    console.log(error);
+    console.log('Error in dbOperation:', error);
     res.status(500).json({ error: 'Internal server error for courseContent' });
   }
 });
@@ -109,13 +112,21 @@ app.get('/learners', async (req, res) => {
     res.status(500).json({ error: 'Internal server error for Learners' });
   }
 });
-
 app.post('/insertorupdatecourseschedule', async (req, res) => {
-  const { subcourseName, employeeID, session, totalLearners, classTimingsFrom, classTimingsTo, dateRangefrom, dateRangeto } = req.body;
+  console.log('Received POST request from client:', req.body);
+  const {
+    subcourseName,
+    employeeID,
+    session,
+    totalLearners,
+    classTimingsFrom,
+    classTimingsTo,
+    dateRangefrom,
+    dateRangeto
+  } = req.body;
+
   try {
     console.log("Received Data:", req.body);
-    
-    // Log the individual values to the console
     console.log("subcourseName:", subcourseName);
     console.log("employeeID:", employeeID);
     console.log("session:", session);
@@ -125,11 +136,23 @@ app.post('/insertorupdatecourseschedule', async (req, res) => {
     console.log('dateRangefrom:', dateRangefrom);
     console.log('dateRangeto:', dateRangeto);
 
-    await dbOperation.Insertorupdatecourseschedule(subcourseName, employeeID, session, totalLearners, classTimingsFrom, classTimingsTo, dateRangefrom, dateRangeto);
-    res.status(200).json({ message: 'Insertorupdatecourseschedule saved successfully' });
+    // Insert or update the course schedule in the database
+    await dbOperation.Insertorupdatecourseschedule(
+      subcourseName,
+      employeeID,
+      session,
+      totalLearners,
+      classTimingsFrom,
+      classTimingsTo,
+      dateRangefrom,
+      dateRangeto
+    );
+
+    console.log("Course schedule saved successfully.");
+    res.status(200).json({ message: 'Course schedule saved successfully.' });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Failed to save Insertorupdatecourseschedule' });
+    console.error("Error occurred:", error);
+    res.status(500).json({ error: 'Failed to save course schedule.' });
   }
 });
 
@@ -352,24 +375,25 @@ app.post("/save-mastercourse", async (req, res) => {
     res.status(500).json({ error: "Failed to save Mastercourse" });
   }
 });
+app.post('/insertupdatetrainer', upload.none(), async (req, res) => {
+  console.log("Received POST request from client:", req.body);
 
-app.post('/insertupdatetrainer', async (req, res) => {
-  const { employeeID, name, designation, courses, hiredDate, reportsTo, status, phoneNumber, location, image, payslip, monthlysalary} = req.body;
+  const { employeeID, name, designation, courses, hiredDate, reportsTo, status, phoneNumber, location, payslip, monthlysalary } = req.body;
+  console.log("Received Data:", req.body);
+  console.log("employeeID:", employeeID);
+  console.log("name:", name);
+  console.log("designation:", designation);
+  console.log("courses:", courses);
+  console.log("hiredDate:", hiredDate);
+  console.log("reportsTo:", reportsTo);
+  console.log("status:", status);
+  console.log("phoneNumber:", phoneNumber);
+  console.log("location:", location);
+  console.log("payslip:", payslip);
+  console.log("monthlysalary:", monthlysalary);
+
   try {
-    console.log("Received Data:", req.body);
-    console.log("mainmenuid:", employeeID);
-    console.log("subcourseid :", name);
-    console.log("subcoursename:", designation);
-    console.log("image:", courses);
-    console.log("enrolledcustomers:", hiredDate);
-    console.log("sessionmodecategory:", reportsTo);
-    console.log("classmodecategory:", status);
-    console.log("batchstartdate:", phoneNumber);
-    console.log("syllabus:", location);
-    console.log("coursecompletionrate:", image);
-    console.log("category", payslip);
-    console.log("trainer", monthlysalary);
-    await dbOperation.Insertupdatetrainer( employeeID, name, designation, courses, hiredDate, reportsTo, status, phoneNumber, location, image, payslip, monthlysalary );
+    await dbOperation.Insertupdatetrainer(employeeID, name, designation, courses, hiredDate, reportsTo, status, phoneNumber, location, payslip, monthlysalary);
     res.status(200).json({ message: 'Insertupdatetrainer saved successfully' });
   } catch (error) {
     console.log(error);

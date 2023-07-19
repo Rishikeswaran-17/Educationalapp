@@ -1,3 +1,4 @@
+//correct
 import React, { useEffect, useRef, useState } from "react";
 import "./CourseContent.css";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
@@ -62,128 +63,129 @@ const CourseContent = () => {
     setPaginationCount((prevCount) => prevCount + 1);
   };
   const predefinedPath =
-    "E:\\project_syncfusion_dashboard-main\\src\\ContentsProvider";
+    "E:\\project_syncfusion_dashboard-main\\ContentsProvider";
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-
-    const videoFiles = files.filter((file) => file.type.includes("video/"));
-
-    const documentFiles = files.filter((file) => {
-      const fileType = file.type.toLowerCase();
-      const fileExtension = file.name.split(".").pop().toLowerCase();
-      const allowedExtensions = [
-        "doc",
-        "docx",
-        "pdf",
-        "ppt",
-        "pptx",
-        "xlsx",
-        "xls",
-        "txt",
-        "csv",
-        "tsv",
-        "csv2",
-      ];
-
-      return (
-        fileType.startsWith("application/") &&
-        allowedExtensions.includes(fileExtension)
+    const handleFileChange = (event) => {
+      const files = Array.from(event.target.files);
+    
+      const videoFiles = files.filter((file) => file.type.includes("video/"));
+      const documentFiles = files.filter((file) => {
+        const fileType = file.type.toLowerCase();
+        const fileExtension = file.name.split(".").pop().toLowerCase();
+        const allowedExtensions = [
+          "doc",
+          "docx",
+          "pdf",
+          "ppt",
+          "pptx",
+          "xlsx",
+          "xls",
+          "txt",
+          "csv",
+          "tsv",
+          "csv2",
+        ];
+    
+        return (
+          fileType.startsWith("application/") &&
+          allowedExtensions.includes(fileExtension)
+        );
+      });
+    
+      const folderFiles = files.filter((file) =>
+        file.webkitRelativePath.includes("/")
       );
-    });
-
-    const folderFiles = files.filter((file) =>
-      file.webkitRelativePath.includes("/")
-    );
-
-    const fileUploads = folderFiles.map((file) => {
-      const filePathParts = file.webkitRelativePath.split("/");
-      const fileName = filePathParts[filePathParts.length - 1];
-      const fileExtension = fileName.split(".").pop();
-
-      const filePath = `${predefinedPath}\\${fileName}`;
-      console.log("File path:", filePath);
-
-      return {
-        file: file,
-        fileName: fileName,
-        fileExtension: fileExtension,
-        filePath: filePath,
-      };
-    });
-
-    setSelectedFiles([
-      ...videoFiles,
-      ...documentFiles,
-      ...folderFiles,
-      ...fileUploads,
-    ]);
-    setUploadedFiles([
-      ...videoFiles.map((file) => file.name),
-      ...documentFiles.map((file) => file.name),
-      ...folderFiles.map((file) => file.name),
-      ...fileUploads.map((file) => file.name),
-    ]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (selectedFiles.length === 0) {
-      return;
-    }
-    setUploading(true);
-    setProgress(0);
-    const totalFiles = selectedFiles.length;
-    let uploadedFiles = 0;
-
-    const updateProgress = () => {
-      const percentage = (uploadedFiles / totalFiles) * 100;
-      setProgress(percentage);
-      if (uploadedFiles === totalFiles) {
-        setUploading(false);
-      }
+    
+      const fileUploads = files.map((file) => {
+        const fileName = file.name;
+        const fileExtension = fileName.split(".").pop();
+    
+        const filePath = `${predefinedPath}\\${fileName}`;
+        console.log("File path:", filePath);
+    
+        return {
+          file: file,
+          fileName: fileName,
+          fileExtension: fileExtension,
+          filePath: filePath,
+        };
+      });
+    
+      const mergedFiles = [
+        ...videoFiles,
+        ...documentFiles,
+        ...folderFiles,
+        ...fileUploads,
+      ];
+    
+      setSelectedFiles(mergedFiles);
+    
+      const uploadedFileNames = mergedFiles.map((file) => file.fileName);
+      setUploadedFiles(uploadedFileNames);
     };
 
-    selectedFiles.forEach((file) => {
-      setTimeout(() => {
-        uploadedFiles++;
-        updateProgress();
-      }, 1000);
-    });
-
-    const formData = new FormData();
-    selectedFiles.forEach((file) => {
-      formData.append("files", file.file);
-    });
-
-    formData.append("courseId", courseId);
-    formData.append("description", description);
-    formData.append("chapterid", chapterid);
-    formData.append("predefinedPath", predefinedPath);
-
-    console.log("courseId:", courseId);
-    console.log("chapterid:", chapterid);
-    console.log("description:", description);
-    console.log("predefinedPath:", predefinedPath);
-
-    fetch("/course-content", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Handle success
-        } else {
-          throw new Error("Upload failed");
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (selectedFiles.length === 0) {
+        return;
+      }
+    
+      console.log("Data to be sent to server:");
+      console.log("courseId:", courseId);
+      console.log("chapterid:", chapterid);
+      console.log("description:", description);
+      console.log("predefinedPath:", predefinedPath);
+    
+      setUploading(true);
+      setProgress(0);
+      const totalFiles = selectedFiles.length;
+      let uploadedFiles = 0;
+    
+      const updateProgress = () => {
+        const percentage = (uploadedFiles / totalFiles) * 100;
+        setProgress(percentage);
+        if (uploadedFiles === totalFiles) {
+          setUploading(false);
         }
-      })
-      .catch((error) => {
-        // Handle error
+      };
+    
+      selectedFiles.forEach((file) => {
+        setTimeout(() => {
+          uploadedFiles++;
+          updateProgress();
+        }, 1000);
       });
-
-    setSelectedFiles([]);
-  };
-
+    
+      const formData = new FormData();
+      selectedFiles.forEach((file) => {
+        formData.append("file", file.file); // Use "file" as the name for the uploaded file
+      });
+    
+      formData.append("courseId", courseId);
+      formData.append("description", description);
+      formData.append("chapterid", chapterid);
+      formData.append("predefinedPath", predefinedPath);
+    
+      console.log("Form data to be sent to server:", formData);
+    
+      fetch("/course-content", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            // Handle success
+          } else {
+            throw new Error("Upload failed");
+          }
+        })
+        .catch((error) => {
+          // Handle error
+        });
+    
+      setSelectedFiles([]);
+    };
+    
   const handleAddIconClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -229,97 +231,104 @@ const CourseContent = () => {
   return (
     <>
       <div className="card cardelement10">
-        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 no-padding curriculumcontentsec">
-          <div class="tab-content">
+        <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 no-padding curriculumcontentsec">
+          <div className="tab-content">
             <router-outlet></router-outlet>
-            <app-curriculum-course-content _nghost-c50="" class="">
-              <div  _ngcontent-c50="" className="tab-pane" id="coursecontent" role="tabpanel">
+            <app-curriculum-course-content _nghost-c50="" className="">
+              <div _ngcontent-c50="" className="tab-pane" id="coursecontent" role="tabpanel">
                 <div _ngcontent-c50="" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding hidden-xs hidden-sm crscontdesktabmain">
-                  <mat-tab-group _ngcontent-c50="" class="crsconttabgrp mat-tab-group mat-primary">                    
-            <Stack spacing={2} sx={{width: "100%", marginTop: "20px", marginLeft: "100px",}}>
-              <Pagination count={paginationCount} color="primary" renderItem={(item) => (
-                  <PaginationItem component={Link} to={`${location.pathname.startsWith('/homepage') ? '/homepage' : '/user_homepage'}/my-classroom/coursecontent/page/${item.page}/${coursename}`} {...item}/>)}
-                  
-              />
-            </Stack>
-                    <div class="mat-tab-body-wrapper">
-                      <mat-tab-body class="mat-tab-body ng-tns-c32-98 mat-tab-body-active" role="tabpanel" id="mat-tab-content-9-0" aria-labelledby="mat-tab-label-9-0" >
+                  <mat-tab-group _ngcontent-c50="" className="crsconttabgrp mat-tab-group mat-primary">
+                    <Stack spacing={2} sx={{ width: "100%", marginTop: "20px", marginLeft: "100px" }}>
+                      <Pagination
+                        count={paginationCount}
+                        color="primary"
+                        renderItem={(item) => (
+                          <PaginationItem
+                            component={Link}
+                            to={`${location.pathname.startsWith('/homepage') ? '/homepage' : '/user_homepage'}/my-classroom/coursecontent/page/${item.page}/${coursename}`}
+                            {...item}
+                          />
+                        )}
+                      />
+                    </Stack>
+                    <div className="mat-tab-body-wrapper">
+                      <mat-tab-body className="mat-tab-body ng-tns-c32-98 mat-tab-body-active" role="tabpanel" id="mat-tab-content-9-0" aria-labelledby="mat-tab-label-9-0">
                         <div className="mat-tab-body-content ng-trigger ng-trigger-translateTab" style={{ transform: "none" }}>
-                          <div  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 modulecontmain" >
-                            <h2  class="moduletitle">
-                              <span  class="modulecount">
-                              <span>{pageNumber}</span>
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 modulecontmain">
+                            <h2 className="moduletitle">
+                              <span className="modulecount">
+                                <span>{pageNumber}</span>
                               </span>
-                              <span  class="modulename">
-                              {modules[pageNumber - 1]}
+                              <span className="modulename">
+                                {modules[pageNumber - 1]}
                               </span>
                             </h2>
-                            <p  class="moduleintro">
+                            <p className="moduleintro">
                               In this module, you will learn about the Creation of a Free Tier Azure Account, accessing Azure Services through Azure Portal and Azure Storage Service. You will gain knowledge of ARM Templates and learn to use them for deploying Azure resources.
                             </p>
                             {coursecontent.map((course) => {
                               const contentID = course.ContentID;
                               const isViewed = sessionStorage.getItem(`videoViewed_${contentID}`) === 'true';
-        console.log("course.ChapterID:", course.ChapterID);
+                              console.log("course.ChapterID:", course.ChapterID);
 
-        let sliceStart, sliceEnd;
+                              let sliceStart, sliceEnd;
 
-        if (pathname.includes("/user_homepage")) {
-          sliceStart = pathname.lastIndexOf("/page/") + 6;
-          sliceEnd = pathname.lastIndexOf("/page/") + 7;
-        } else if (pathname.includes("/homepage")) {
-          sliceStart = pathname.lastIndexOf("/page/") + 6;
-          sliceEnd = pathname.lastIndexOf("/page/") + 7;
-        }
-        const sliceValue = pathname.slice(sliceStart, sliceEnd);
-        console.log(`pathname.slice(${sliceStart},${sliceEnd}):`,pathname.slice(sliceStart, sliceEnd));
-        console.log(`pathname.slice(${sliceStart},${sliceEnd}) === course.ChapterID:`,pathname.slice(sliceStart, sliceEnd) === course.ChapterID);
+                              if (pathname.includes("/user_homepage")) {
+                                sliceStart = pathname.lastIndexOf("/page/") + 6;
+                                sliceEnd = pathname.lastIndexOf("/page/") + 7;
+                              } else if (pathname.includes("/homepage")) {
+                                sliceStart = pathname.lastIndexOf("/page/") + 6;
+                                sliceEnd = pathname.lastIndexOf("/page/") + 7;
+                              }
+                              const sliceValue = pathname.slice(sliceStart, sliceEnd);
+                              console.log(`pathname.slice(${sliceStart},${sliceEnd}):`, pathname.slice(sliceStart, sliceEnd));
+                              console.log(`pathname.slice(${sliceStart},${sliceEnd}) === course.ChapterID:`, pathname.slice(sliceStart, sliceEnd) === course.ChapterID);
 
-        if (pathname.slice(sliceStart, sliceEnd) === course.ChapterID) {
-          console.log("Inside if condition");
-        }
-        // Extracting file extension from FileName
-        const fileExtension = course.FileName.split(".").pop();
+                              if (pathname.slice(sliceStart, sliceEnd) === course.ChapterID) {
+                                console.log("Inside if condition");
+                              }
+                              // Extracting file extension from FileName
+                              const fileExtension = course.FileName.split(".").pop();
 
-        return (
-          pathname.slice(sliceStart, sliceEnd) === course.ChapterID && (
-            <div className="coursecontmain" key={course.ChapterID}>
-              <a
-                href={`${location.pathname.startsWith("/homepage") ? "/homepage" : "/user_homepage"}/view-recording/page/${sliceValue}/${coursename}`} className="courseconttile"
-              >
-                <div className="courseconthead">
-                  <div className="coursetitlesec">
-                    <span className="iconmain">
-                      {(fileExtension === "webm" || fileExtension === "mp4" || fileExtension === "mkv") && (
-                        <PlayCircleFilledWhiteOutlinedIcon style={{ color: "grey" }} />
-                      )}
-                      {(fileExtension === "pdf" || fileExtension === "ppt" || fileExtension === "docs" || fileExtension === "csv" || fileExtension === "pptx" || fileExtension === "xls" || fileExtension === "xlsx" || fileExtension === "docx" || fileExtension === "txt" || fileExtension === "csv2" || fileExtension === "tsv") && (
-                        <LibraryBooksOutlinedIcon style={{ color: "grey" }} />
-                      )}
-                      {(fileExtension === "zip" || fileExtension === "rar") && (
-                        <FolderCopyOutlinedIcon style={{ color: "grey" }} />
-                      )}
-                    </span>
-                    <span className="coursetitle">{course.Description}</span>
-                  </div>
-                  <div className="modulestatussec" key={contentID}>
-          <span className={`status_${isViewed ? 'blue' : 'red'}`}>
-            {isViewed ? 'Viewed' : 'Not Viewed'}
-          </span>
-        </div>
-                </div>
-                <p className="coursecontdesc" id="link-1584129">
-                  {new Date(course.DateTime).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                  })}
-                </p>
-              </a>
-            </div>
-          )
-        );
-      })}
+                              return (
+                                pathname.slice(sliceStart, sliceEnd) === course.ChapterID && (
+                                  <div className="coursecontmain" key={course.ChapterID}>
+                                    <a
+                                      href={`${location.pathname.startsWith("/homepage") ? "/homepage" : "/user_homepage"}/view-recording/page/${sliceValue}/${coursename}`} className="courseconttile"
+                                    >
+                                      <div className="courseconthead">
+                                        <div className="coursetitlesec">
+                                          <span className="iconmain">
+                                            {(fileExtension === "webm" || fileExtension === "mp4" || fileExtension === "mkv") && (
+                                              <PlayCircleFilledWhiteOutlinedIcon style={{ color: "grey" }} />
+                                            )}
+                                            {(fileExtension === "pdf" || fileExtension === "ppt" || fileExtension === "docs" || fileExtension === "csv" || fileExtension === "pptx" || fileExtension === "xls" || fileExtension === "xlsx" || fileExtension === "docx" || fileExtension === "txt" || fileExtension === "csv2" || fileExtension === "tsv") && (
+                                              <LibraryBooksOutlinedIcon style={{ color: "grey" }} />
+                                            )}
+                                            {(fileExtension === "zip" || fileExtension === "rar") && (
+                                              <FolderCopyOutlinedIcon style={{ color: "grey" }} />
+                                            )}
+                                          </span>
+                                          <span className="coursetitle">{course.Description}</span>
+                                        </div>
+                                        <div className="modulestatussec" key={contentID}>
+                                          <span className={`status_${isViewed ? 'blue' : 'red'}`}>
+                                            {isViewed ? 'Viewed' : 'Not Viewed'}
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <p className="coursecontdesc" id="link-1584129">
+                                        {new Date(course.DateTime).toLocaleDateString("en-US", {
+                                          year: "numeric",
+                                          month: "2-digit",
+                                          day: "2-digit",
+                                        })}
+                                      </p>
+                                    </a>
+                                  </div>
+                                )
+                              );
+                            })}
                           </div>
                         </div>
                       </mat-tab-body>

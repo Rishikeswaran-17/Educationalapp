@@ -47,51 +47,51 @@ const Trainers = () => {
     navigate(`/trainers/${EmployeeID}`); // Update the route to include `/trainers/`
   };
   const employeesData = (data) => (
-    data.map(item => ({
-      image: item.image,
-      EmployeeID: item.EmployeeID,
-      Name: item.Name,
-      Designation: item.Designation,
-      Courses: item.Courses,
-      HiredDate: item.HiredDate,
-      ReportsTo: item.ReportsTo,
-      Status: item.Status,
-      PhoneNumber: item.PhoneNumber,
-      Location: item.Location,
-      EmployeeImage: item.image,
-      Payslip: item.Payslip,
-      Monthlysalary: item.Monthlysalary
-    }))
+    data.map(item => {
+      // Parse the date string to a Date object
+      const hiredDate = new Date(item.HiredDate);
+  
+      // Get the day, month, and year
+      const day = hiredDate.getDate().toString().padStart(2, '0');
+      const month = (hiredDate.getMonth() + 1).toString().padStart(2, '0');
+      const year = hiredDate.getFullYear().toString();
+  
+      // Concatenate the formatted date
+      const formattedHiredDate = `${day}/${month}/${year}`;
+  
+      return {
+        image: item.image,
+        EmployeeID: item.EmployeeID,
+        Name: item.Name,
+        Designation: item.Designation,
+        Courses: item.Courses,
+        HiredDate: formattedHiredDate, // Replace the original HiredDate with the formatted one
+        ReportsTo: item.ReportsTo,
+        Status: item.Status,
+        PhoneNumber: item.PhoneNumber,
+        Location: item.Location,
+        EmployeeImage: item.image,
+        Payslip: item.Payslip,
+        Monthlysalary: item.Monthlysalary
+      };
+    })
   );
+  
 
   const handleSubmit = (e) => {
-    console.log("Handling form submission...");
-    console.log("employeeID: ",employeeID);
-    console.log("name: ",name);
-    console.log("designation: ",designation);
-    console.log("courses: ",courses);
-    console.log("hiredDate: ",hiredDate);
-    console.log("reportsTo: ",reportsTo);
-    console.log("status: ",status);
-    console.log("phoneNumber: ",phoneNumber);
-    console.log("location: ",location);
-    console.log("image: ",image);
-    console.log("payslip: ",payslip);
-    console.log("monthlysalary: ",monthlysalary);
     e.preventDefault();
     const formData = new FormData();
-    formData.append("employeeID",employeeID);
-    formData.append("name",name);
-    formData.append("designation",designation);
-    formData.append("courses",courses);
-    formData.append("hiredDate",hiredDate);
-    formData.append("reportsTo",reportsTo);
-    formData.append("status",status);
-    formData.append("phoneNumber",phoneNumber);
-    formData.append("location",location);
-    formData.append("image",image);
-    formData.append("payslip",payslip);
-    formData.append("monthlysalary",monthlysalary);
+    formData.append("employeeID", employeeID);
+    formData.append("name", name);
+    formData.append("designation", designation);
+    formData.append("courses", courses);
+    formData.append("hiredDate", hiredDate);
+    formData.append("reportsTo", reportsTo);
+    formData.append("status", status);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("location", location);
+    formData.append("payslip", payslip);
+    formData.append("monthlysalary", monthlysalary);
     console.log("Form Data:", Object.fromEntries(formData)); // Display form data as an object
     console.log("Sending POST request to server...");
     fetch("/insertupdatetrainer", {
@@ -101,10 +101,10 @@ const Trainers = () => {
       .then((response) => {
         if (response.ok) {
           console.log("Request successful");
+          return response.json(); // Parse the response as JSON
         } else {
           throw new Error("Upload Failed");
         }
-        return response.json(); // Parse the response as JSON
       })
       .then((data) => {
         console.log("Response data:", data);
@@ -114,6 +114,20 @@ const Trainers = () => {
       });
   };
 
+  // Log the form data whenever the state variables are updated
+  useEffect(() => {
+    console.log("employeeID: ", employeeID);
+    console.log("name: ", name);
+    console.log("designation: ", designation);
+    console.log("courses: ", courses);
+    console.log("hiredDate: ", hiredDate);
+    console.log("reportsTo: ", reportsTo);
+    console.log("status: ", status);
+    console.log("phoneNumber: ", phoneNumber);
+    console.log("location: ", location);
+    console.log("payslip: ", payslip);
+    console.log("monthlysalary: ", monthlysalary);
+  }, [employeeID, name, designation, courses, hiredDate, reportsTo, status, phoneNumber, location, payslip, monthlysalary]);
   return (
     
     <div className='my-3 absolute top-12 left-96 w-9/12'>
@@ -148,7 +162,7 @@ const Trainers = () => {
               </label>
             </div>
             <div class="md:w-2/3">
-              <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" onChange={(e) => setEmployeeID(e.target.value)} />
+              <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text"  name="employeeID" onChange={(e) => setEmployeeID(e.target.value)} />
             </div>
           </div>
           <div class="md:flex md:items-center mb-6">

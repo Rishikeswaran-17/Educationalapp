@@ -22,11 +22,16 @@ const Login = () => {
       });
 
       if (response.ok) {
-        const isAdmin = email === "shahul@hotmail.com"; // Check if the user is an admin based on the email
+        // Check if the user is an admin or master based on the email
+        const isAdmin = email === "shahul@hotmail.com" || email.endsWith("@admin.com");
+        const isMaster = email.startsWith("master.");
 
         if (isAdmin) {
           console.log("Redirecting to admin_Homepage reports...");
-          navigate("/reports"); // Redirect admin to admin_homepage
+          navigate("/admin_homepage"); // Redirect admin to admin_homepage
+        } else if (isMaster) {
+          console.log("Redirecting to master page...");
+          navigate("/master"); // Redirect user with email starting with "master." to master page
         } else {
           if (location.pathname === "/reports") {
             console.log("You are not authorized to access this page.");
@@ -35,7 +40,7 @@ const Login = () => {
               from: { pathname: "/user_homepage" },
             };
             console.log("Redirecting to:", from);
-            navigate(from); // Redirect regular user to the previous page or /homepage
+            navigate(from); // Redirect regular user to the previous page or /user_homepage
           }
         }
       } else {

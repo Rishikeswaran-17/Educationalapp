@@ -85,17 +85,17 @@ function CourseInformation() {
     }
     console.log("Minus Clicked:", count - 1);
   };
-
   const handleSubmit = async () => {
     console.log("Form submitted!");
-
+  
     const matchingCourse = subcourse.find(
       (course) => String(course.subcoursename) === String(coursename)
     );
+  
     if (matchingCourse) {
       setSubcourseName(matchingCourse.subcoursename);
     }
-
+  
     console.log("Handling form submission...");
     console.log("subcourseName:", subcourseName);
     console.log("employeeID:", employeeID);
@@ -105,26 +105,30 @@ function CourseInformation() {
     console.log("classTimingsTo:", classTimingsTo);
     console.log("dateRangefrom:", dateRangefrom);
     console.log("dateRangeto:", dateRangeto);
-
+  
     try {
-      const formData = new FormData();
-      formData.append("subcourseName", subcourseName);
-      formData.append("employeeID", employeeID);
-      formData.append("session", String(count));
-      formData.append("totalLearners", learnerCount);
-      formData.append("classTimingsFrom", classTimingsFrom);
-      formData.append("classTimingsTo", classTimingsTo);
-      formData.append("dateRangefrom", dateRangefrom);
-      formData.append("dateRangeto", dateRangeto);
-
-      console.log("Form Data:", Object.fromEntries(formData));
+      const formData = {
+        subcourseName: subcourseName,
+        employeeID: employeeID,
+        session: count,
+        totalLearners: learnerCount,
+        classTimingsFrom: classTimingsFrom,
+        classTimingsTo: classTimingsTo,
+        dateRangefrom: dateRangefrom,
+        dateRangeto: dateRangeto,
+      };
+  
+      console.log("Form Data:", formData);
       console.log("Sending POST request to server...");
-
+  
       const response = await fetch("/insertorupdatecourseschedule", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         console.log("Response data:", data);
