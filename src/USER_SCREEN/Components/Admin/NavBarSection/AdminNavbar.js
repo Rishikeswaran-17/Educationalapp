@@ -2,84 +2,74 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const AdminNavbar = () => {
-  const [mainmenu, setMainmenu] = useState([]);
-  const [subcourse, setSubcourse] = useState([]);
-  const [mastercourse, setMastercourse] = useState([]);
-
-  useEffect(() => {
-    fetchMainMenu();
-    fetchSubcourse();
-    fetchMastercourse();
-  }, []);
-
-  const fetchMainMenu = async () => {
-    try {
-      const response = await fetch("/main-menu");
-      const data = await response.json();
-      setMainmenu(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchSubcourse = async () => {
-    try {
-      const response = await fetch("/subcourse");
-      const data = await response.json();
-      setSubcourse(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchMastercourse = async () => {
-    try {
-      const response = await fetch("/mastercourse");
-      const data = await response.json();
-      setMastercourse(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const location = useLocation();
   const { pathname } = location;
-  const currentPath = location.pathname;
   const encodedCoursename = pathname.split("/").pop();
   const coursename = decodeURIComponent(encodedCoursename);
-
-  const breadcrumbLinks = [
-    { path: "/CCC", text: "Home" },
-    { path: "/admin_homepage", text: "All Courses" },
-    { path: `/${mainmenu.category}`, text: `${mainmenu.mainmenuname}` },
-  ];
 
   return (
     <nav className="w-full flex justify-between bg-blue-950 opacity-85 px-5 py-1">
       <div>
         <ol className="list-reset flex">
-          {breadcrumbLinks.map((link, index) => (
-            <React.Fragment key={index}>
-              <li>
-                <Link
-                  to={link.path}
-                  className={`text-sm ${link.path === currentPath
-                      ? "text-blue-400"
-                      : "text-neutral-300"
-                    } transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600`}
-                >
-                  {link.text}
-                </Link>
-              </li>
-              {index !== breadcrumbLinks.length - 1 && (
+          <li>
+            <Link
+              to="/user_homepage"
+              className={`text-sm ${pathname === "/user_homepage"
+                ? "text-blue-400"
+                : "text-neutral-300"
+              } transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600`}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <span className="mx-2 text-neutral-400 dark:text-neutral-400">
+              &gt;
+            </span>
+          </li>
+          <li>
+            <Link
+              to="https://www.edureka.co/all-courses"
+              className={`text-sm ${pathname === "/all-courses"
+                ? "text-blue-400"
+                : "text-neutral-300"
+              } transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600`}
+            >
+              All Courses
+            </Link>
+          </li>
+          <li>
+            <span className="mx-2 text-neutral-400 dark:text-neutral-400">
+              &gt;
+            </span>
+          </li>
+          <li>
+            <span className={`text-sm ${pathname === "/my-classroom"
+              ? "text-blue-400"
+              : "text-neutral-300"
+            } transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600 cursor-pointer`}>
+              My Classroom
+            </span>
+          </li>
+          {pathname !== "/user_homepage" &&
+            pathname !== "/all-courses" &&
+            pathname !== "/my-classroom" && (
+              <>
                 <li>
                   <span className="mx-2 text-neutral-400 dark:text-neutral-400">
                     &gt;
                   </span>
                 </li>
-              )}
-            </React.Fragment>
-          ))}
+                <li>
+                  <span className={`text-sm ${pathname === "/discussion_forum"
+                    ? "text-blue-400"
+                    : "text-neutral-300"
+                  } transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600`}>
+                    {coursename}
+                  </span>
+                </li>
+              </>
+            )}
         </ol>
       </div>
       <div className="flex">

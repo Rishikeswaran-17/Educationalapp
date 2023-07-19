@@ -47,6 +47,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const IntroPage = () => {
+  
   useEffect(() => {
     const handleSubmenuClick = (event) => {
       if (event.target.id === "submenu-icon") {
@@ -80,6 +81,11 @@ const IntroPage = () => {
   const coursename = decodeURIComponent(encodedCoursename);
   const [courseNameState, setCourseNameState] = useState("");
 
+  // console.log("pathname:", pathname);
+  // console.log("encodedCoursename:", encodedCoursename);
+  // console.log("coursename:", coursename);
+  // console.log("courseNameState:", courseNameState);
+
   const handleButtonClick = () => {
     if (pathname !== "/user_homepage") {
       setCourseNameState(coursename);
@@ -88,7 +94,6 @@ const IntroPage = () => {
   useEffect(() => {
     console.log("Course Name: ", courseNameState);
   }, [courseNameState]);
-
 
   useEffect(() => {
     fetchlivecourses();
@@ -100,9 +105,9 @@ const IntroPage = () => {
     try {
       const response = await fetch("/live-course");
       const data = await response.json();
-      console.log("data = ", data); // Log the data variable
+      // console.log("data = ", data); // Log the data variable
       setLivecourses(data);
-      console.log("dataRecordset = ", data); // Log the data variable
+      // console.log("dataRecordset = ", data); // Log the data variable
     } catch (error) {
       console.log(error);
     }
@@ -113,9 +118,9 @@ const IntroPage = () => {
     try {
       const response = await fetch("/selfpaced-course");
       const data = await response.json();
-      console.log("data1 = ", data); // Log the data variable
+      // console.log("data1 = ", data); // Log the data variable
       setSelfpacedcourses(data);
-      console.log("selfPacedRecordset = ", data); // Log the data variable
+      // console.log("selfPacedRecordset = ", data); // Log the data variable
     } catch (error) {
       console.log(error);
     }
@@ -126,9 +131,9 @@ const IntroPage = () => {
     try {
       const response = await fetch("/recommended-course");
       const data = await response.json();
-      console.log("data2 = ", data); // Log the data variable
+      // console.log("data2 = ", data); // Log the data variable
       setRecommendedcourses(data);
-      console.log("data2Recordset = ", data); // Log the data variable
+      // console.log("data2Recordset = ", data); // Log the data variable
     } catch (error) {
       console.log(error);
     }
@@ -136,8 +141,9 @@ const IntroPage = () => {
 
   const handleCourseSelection = (coursename) => {
     setSelectedCourse(coursename);
-    console.log("Selected Course: ", coursename);
-    console.log("selectedCourse = ", selectedCourse);
+    console.log('handleCourseSelection called with:', coursename);
+    // console.log("Selected Course: ", coursename);
+    // console.log("selectedCourse = ", selectedCourse);
   };
 
   return (
@@ -149,15 +155,12 @@ const IntroPage = () => {
           <div className="">
             <Accordion>
               <AccordionSummary
-
                 aria-controls="panel1d-content"
                 id="panel1d-header"
                 expanded={expanded === "panel1"}
                 onChange={handleChange("panel1")}
               >
-                <Typography>
-                  Live Courses
-                </Typography>
+                <Typography>Live Courses</Typography>
               </AccordionSummary>
               {livecourses.map((course) => (
                 <div
@@ -168,7 +171,7 @@ const IntroPage = () => {
                     <Typography>
                       {" "}
                       <Link
-                        to={`/user_homepage/course/${course.coursename}`}
+                        to={`/user_homepage/course/${encodeURIComponent(course.coursename)}`}
                         onClick={() => handleCourseSelection(course.coursename)}
                       >
                         {course.coursename}
@@ -196,10 +199,12 @@ const IntroPage = () => {
                 >
                   <AccordionDetails>
                     <Typography>
-                      {" "}
                       <Link
-                        to={`/user_homepage/course/${course.coursename}`}
-                        onClick={() => handleCourseSelection(course.coursename)}
+                        to={`/user_homepage/course/${encodeURIComponent(course.coursename)}`}
+                        onClick={() => {
+                          console.log("Clicked course:", course.coursename);
+                          handleCourseSelection(course.coursename);
+                        }}
                       >
                         {course.coursename}
                       </Link>
@@ -219,23 +224,27 @@ const IntroPage = () => {
                 <Typography>Recommended Courses</Typography>
               </AccordionSummary>
 
-              {recommendedcourses && recommendedcourses.map((course) => (
-                <div
-                  key={course.courseid}
-                  className="hover:bg-slate-100 hover:text-blue-600"
-                >
-                  <AccordionDetails>
-                    <Typography>
-                      <Link
-                        to={`/user_homepage/course/${course.coursename}`}
-                        onClick={() => handleCourseSelection(course.coursename)}
-                      >
-                        {course.coursename}
-                      </Link>
-                    </Typography>
-                  </AccordionDetails>
-                </div>
-              ))}
+              {recommendedcourses &&
+                recommendedcourses.map((course) => (
+                  <div
+                    key={course.courseid}
+                    className="hover:bg-slate-100 hover:text-blue-600"
+                  >
+                    <AccordionDetails>
+                      <Typography>
+                        <Link
+                          to={`/user_homepage/course/${encodeURIComponent(course.coursename)}`}
+
+                          onClick={() =>
+                            handleCourseSelection(course.coursename)
+                          }
+                        >
+                          {course.coursename}
+                        </Link>
+                      </Typography>
+                    </AccordionDetails>
+                  </div>
+                ))}
             </Accordion>
           </div>
         </div>
@@ -326,8 +335,8 @@ const IntroPage = () => {
               </div>
               {pathname !== "/user_homepage" && (
                 <p className="text-blue-900 font-thin text-xs px-4">
-                  How likely are you to recommend Edureka {coursename} to your friends
-                  & family?
+                  How likely are you to recommend Edureka {coursename} to your
+                  friends & family?
                 </p>
               )}
               {/* Rating Section */}
@@ -394,8 +403,8 @@ const IntroPage = () => {
             {/*  */}
             <div className="my-5 mx-5">
               <p>
-                We are sorry to hear about your learning experience, What did you
-                dislike about the course?
+                We are sorry to hear about your learning experience, What did
+                you dislike about the course?
               </p>
               <div className="flex justify-between my-3">
                 <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
@@ -475,7 +484,7 @@ const IntroPage = () => {
             <div className="flex justify-between">
               <div>
                 {pathname !== "/user_homepage" && (
-                  <a href={`/user_homepage/my-classroom/${coursename}`}>
+                  <a href={`/user_homepage/my-classroom/gettingstarted/${encodeURIComponent(coursename)}`}>
                     <button
                       onContextMenu={(e) => e.preventDefault()}
                       onClick={handleButtonClick}

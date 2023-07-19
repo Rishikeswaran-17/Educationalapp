@@ -494,6 +494,48 @@ const InsertupdateLearner = async (LearnerID,
     throw new Error("Failed to save InsertandUpdateLearner");
   }
 }
+
+const courseContent = async (courseId, fileName, filePath, description, chapterid) => {
+  console.log('dbOperation - courseContent function called');
+  try {
+    console.log('Inserting course content:');
+    console.log('Course ID:', courseId);
+    console.log('File Name:', fileName);
+    console.log('File Path:', filePath);
+    console.log('Description:', description);
+
+    let pool = await sql.connect(config);
+    await pool
+      .request()
+      .input('courseid', sql.Int, courseId)
+      .input('FileName', sql.VarChar(sql.MAX), fileName)
+      .input('FilePath', sql.VarChar(sql.MAX), filePath)
+      .input('Description', sql.VarChar(sql.MAX), description)
+      .input('ChapterID',sql.VarChar(255),chapterid)
+      .execute('InsertCoursesContent');
+
+    console.log('CoursesContent inserted successfully');
+  } catch (error) {
+    console.log(error);
+    throw new Error('Failed to save CoursesContent');
+  }
+};
+
+
+const getcourseContent = async () => {
+  try {
+    let pool = await sql.connect(config);
+    const result = await pool
+      .request()
+      .query("SELECT * FROM CoursesContent");
+      console.log("CoursesContent db = ",result);
+    return result; // Return the recordset instead of the result object
+   
+  } catch (error) {
+    console.log(error);
+    throw new Error('Failed to get livecourses coursename');
+  }
+};
 module.exports = {
   sql,
   GetSubcourses,
@@ -518,5 +560,7 @@ module.exports = {
   savemastercourse,
   Insertupdatetrainer,
   InsertupdateLearner,
+  courseContent,
+  getcourseContent,
 };
 

@@ -1,0 +1,38 @@
+/* css for card */
+.cardelement10 {
+    position: absolute !important;
+    top: 135px;
+    left: 997px;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-top: 20px;
+    padding-bottom: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* Set a high z-index to ensure it appears above other elements */
+    margin-bottom: 103px; /* Remove !important */
+    top: 135px; /* Add top position to stick to the top */
+    bottom: initial; /* Remove bottom position */
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1199px){
+    .cardelement10{
+        margin-bottom:236px !important;
+        max-width: 60% ;
+        margin-left:-415px;
+    }
+}
+
+.headingtag{
+  color: orange;
+  font-family: sans-serif;
+}
+
+.ptag{
+  margin: 14px;
+  text-align: justify
+}
+

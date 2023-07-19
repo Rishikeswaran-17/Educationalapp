@@ -18,7 +18,7 @@ const MyClassroom = () => {
   return (
     <div>
       {/* Navbar */}
-      <nav class="w-full flex justify-evenly bg-blue-950 opacity-95 px-5 py-1">
+      <nav class="w-full flex justify-between bg-blue-950 opacity-95 px-5 py-1">
         {pathname !== "/admin_homepage" && (
           <div className="text-3xl text-white font-sans my-3">
             {coursename}
@@ -35,15 +35,18 @@ const MyClassroom = () => {
             <span className="pl-1">Completed</span>{" "}
           </div>
         </div>
-        <div className="relative hover:bg-slate-50 rounded-t-3xl px-0.5">
-          <button
-            id="browseCategory"
-            onMouseOver={toggleMenuBrowse}
-            aria-haspopup="true"
-            aria-expanded={setinitBrowseCategory ? "true" : "false"}
-            type="button"
-            className="text-sm my-1 relative z-10 flex justify-evenly bg-blue-900 opacity-80 hover:bg-opacity-95 px-1 py-2 rounded-3xl"
-          >
+        {/* <div className="relative hover:bg-slate-50 md:mr-0 rounded-t-3xl px-0.5 -scroll-mr-96 mr-64">
+        <button
+  id="browseCategory"
+  onMouseOver={toggleMenuBrowse}
+  aria-haspopup="true"
+  aria-expanded={initBrowseCategory ? "true" : "false"}
+  type="button"
+  className={`text-sm my-1 relative z-10 flex bg-blue-900 opacity-80 px-1 py-2 rounded-3xl ${
+    initBrowseCategory ? "hover:bg-opacity-95" : ""
+  }`}
+>
+
             <div className="p-1">
               <p className="text-xs text-left text-yellow-500">
                 Your Course Grade
@@ -109,7 +112,7 @@ const MyClassroom = () => {
               <div className="text-blue-500 text-center pt-3"><a href="/contact_us">How it works?</a></div>
             </li>
           </ul>
-        </div>
+        </div> */}
       </nav>
     </div>
   );

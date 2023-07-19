@@ -1,6 +1,6 @@
 export { default as Ecommerce } from './Reports';
 export { default as Kanban } from './Kanban';
-export { default as Orders } from './Courses';
+export { default as Orders } from './CoursesAD';
 export { default as Employees } from './Trainers';
 export { default as Editor } from './Editor';
 export { default as Customers } from './Learners';

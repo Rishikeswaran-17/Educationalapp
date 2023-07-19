@@ -1,0 +1,13 @@
+.videoclass{
+    margin: 2% 25%;
+    width: 50%;
+    border-radius: 1%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .videoclass{
+        margin: 2% 10%;
+        width:80%;
+    }
+    
+}

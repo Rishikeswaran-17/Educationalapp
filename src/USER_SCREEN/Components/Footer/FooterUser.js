@@ -3,7 +3,7 @@ import React from "react";
 
 const FooterUser = () => {
   return (
-    <div className="bg-white w-full bottom-0">
+    <div className="bg-white w-full bottom-0 mt-20">
       <div className="w-11/12 mx-auto p-10">
         <div className="">
           <img

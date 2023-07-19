@@ -1,20 +1,67 @@
-const express = require('express');
 const dbOperation = require('./src/dbFiles/dbOperation');
+const express = require('express');
 const cors = require('cors');
-
+const path = require('path');
+const fs = require('fs-extra');
+const { v4: uuidv4 } = require('uuid');
 const PORT = process.env.PORT || 5000;
 const multer = require('multer');
-const upload = multer(); // Create a multer instance
 const app = express();
-// Use multer middleware to parse multipart/form-data
-app.use(upload.none());
-
 
 app.use(cors());
-app.use(express.json()); // Add this line to parse JSON in the request body
+app.use(express.json());
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, 'public', 'Contents'));
+  },
+  filename: (req, file, cb) => {
+    const fileName = uuidv4() + path.extname(file.originalname);
+    cb(null, fileName);
+  },
+});
+
+const upload = multer({ storage });
 
 app.get('/', (req, res) => {
   res.send('Hello, this is the root URL!');
+});
+
+// Route for handling file uploads
+app.post('/course-content', upload.single('file'), async (req, res) => {
+  const { courseId, description, chapterid } = req.body;
+  const file = req.file;
+
+  console.log('Received data from client:');
+  console.log('courseId:', courseId);
+  console.log('description:', description);
+  console.log('chapterid:', chapterid);
+  console.log('Uploaded file:', file);
+
+  try {
+    if (!file) {
+      throw new Error('No file uploaded');
+    }
+
+    const fileName = file.filename;
+    const filePath = file.path;
+
+    console.log('File:', fileName);
+    console.log('Destination path:', filePath);
+
+    // Move the file to the destination path
+    await fs.move(filePath, path.join(__dirname, 'public', 'Contents', fileName));
+
+    // Call the dbOperation function to save the file information to the database
+    console.log('Saving course content to the database');
+    await dbOperation.courseContent(courseId, fileName, filePath, description, chapterid);
+    console.log('Course content saved to the database');
+
+    res.status(200).json({ message: 'courseContent saved successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal server error for courseContent' });
+  }
 });
 
 app.get('/Subcourse', async (req, res) => {
@@ -382,6 +429,19 @@ app.post('/insertupdatelearner', async (req, res) => {
     res.status(500).json({ error: 'Failed to save InsertupdateLearner' });
   }
 });
+
+
+app.get('/get-courseContent', async (req, res) => {
+  try {
+    const getcoursecontent = await dbOperation.getcourseContent();
+    res.json(getcoursecontent);
+    console.log("server getcoursecontent : ",getcoursecontent);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal server error for getcoursecontent' });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

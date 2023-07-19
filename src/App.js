@@ -28,7 +28,7 @@ import "./App.css";
 
 import { useStateContext } from "./ADMIN_SCREEN/contexts/ContextProvider";
 import Reports from "./ADMIN_SCREEN/pages/Reports";
-import Courses from "./ADMIN_SCREEN/pages/Courses";
+import CoursesAD from "./ADMIN_SCREEN/pages/CoursesAD";
 import Trainers from "./ADMIN_SCREEN/pages/Trainers";
 import Learners from "./ADMIN_SCREEN/pages/Learners";
 import CourseInformation from "./ADMIN_SCREEN/pages/CourseInformation";
@@ -46,16 +46,16 @@ import MastersPage from "./USER_SCREEN/Components/Admin/MastersPage/MastersPage"
 import ThemesADMIN from "./ADMIN_SCREEN/components/ThemesADMIN";
 import Footer1 from "./USER_SCREEN/Components/Footer/Footer1";
 import StudentsInformation from "./ADMIN_SCREEN/pages/StudentsInformation";
+import MyClassroom from "./USER_SCREEN/Components/Users/MyClassRoom/MyClassroom";
+import MyclassContent from "./USER_SCREEN/Components/Admin/Body/Myclassroom/MyclassContent/MyclassContent";
+import GettingStarted from "./USER_SCREEN/Components/Admin/Body/Myclassroom/GettingStarted/GettingStarted";
+import CourseContent from "./USER_SCREEN/Components/Admin/Body/Myclassroom/CourseContent/CourseContent";
 
 const App = () => {
   const {
     setCurrentColor,
     setCurrentMode,
     currentMode,
-    activeMenu,
-    currentColor,
-    themeSettings,
-    setThemeSettings,
   } = useStateContext();
   const [subcourse, setSubcourse] = useState([]);
   const [trainers, setTrainers] = useState([]);
@@ -130,9 +130,9 @@ const App = () => {
     try {
       const response = await fetch("/live-course");
       const data = await response.json();
-        console.log("dataapp = ", data); // Log the data variable
-        setLivecourses(data);
-        console.log("dataRecordsetapp = ", data); // Log the data variable
+      console.log("dataapp = ", data); // Log the data variable
+      setLivecourses(data);
+      console.log("dataRecordsetapp = ", data); // Log the data variable
     } catch (error) {
       console.log(error);
     }
@@ -209,7 +209,9 @@ const App = () => {
           {livecourses.map((course) => (
             <Route
               key={course.coursename}
-              path={`/user_homepage/course/${course.coursename}`}
+              path={`/user_homepage/course/${encodeURIComponent(
+                course.coursename
+              )}`}
               element={
                 <>
                   <AdminHomepage />
@@ -220,10 +222,13 @@ const App = () => {
               }
             />
           ))}
+
           {selfpacedcourses.map((course) => (
             <Route
               key={course.coursename}
-              path={`/user_homepage/course/${course.coursename}`}
+              path={`/user_homepage/course/${encodeURIComponent(
+                course.coursename
+              )}`}
               element={
                 <>
                   <AdminHomepage />
@@ -237,7 +242,9 @@ const App = () => {
           {recommendedcourses.map((course) => (
             <Route
               key={course.coursename}
-              path={`/user_homepage/course/${course.coursename}`}
+              path={`/user_homepage/course/${encodeURIComponent(
+                course.coursename
+              )}`}
               element={
                 <>
                   <AdminHomepage />
@@ -248,6 +255,179 @@ const App = () => {
               }
             />
           ))}
+          {/* next page for user to enter course */}
+
+          {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              path={`/user_homepage/my-classroom/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {/*                        homepage/gettingstarted for main page            */}
+
+          {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/gettingstarted/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/gettingstarted/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              path={`/user_homepage/my-classroom/gettingstarted/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+
+{/*                     user_homepage/coursecontent for main page                                                              */}
+            {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/coursecontent/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/coursecontent/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              path={`/user_homepage/my-classroom/coursecontent/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                 <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {/*  <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </> */}
           {mainmenu.map((course) => (
             <Route
               key={course.coursename}
@@ -309,7 +489,7 @@ const App = () => {
             element={
               <>
                 <ThemesADMIN />
-                <Courses />
+                <CoursesAD />
                 <Footer />
               </>
             }
@@ -383,6 +563,7 @@ const App = () => {
               }
             />
           ))}
+
           {/* apps  */}
           <Route
             path="/kanban"

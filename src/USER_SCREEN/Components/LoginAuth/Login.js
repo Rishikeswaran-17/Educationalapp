@@ -49,7 +49,7 @@ const Login = () => {
 
   return (
     <div className="bg-slate-200 dark:bg-main-dark-bg h-screen">
-      <div className="container  sm:w-3/5 lg:w-2/6 rounded-lg shadow-md bg-white dark:bg-secondary-dark-bg mx-auto relative top-20 p-4">
+      <div className=" w-96 sm:w-3/5 lg:w-2/6 rounded-lg shadow-md bg-white dark:bg-secondary-dark-bg mx-auto relative top-20 p-4">
         <div className="top px-3 mt-3 flex justify-between">
           <h2 className=" text-orange-500 text-xl font-medium">Let's Get Started</h2><img
             class="w-7"

@@ -53,7 +53,7 @@ export default function CourseContentPagination() {
           display: "flex",
           paddingX: "10px",
           width: "850px",
-          marginX: "auto"
+          marginX: "auto",
         }}
       >
         <Tabs
@@ -64,7 +64,7 @@ export default function CourseContentPagination() {
           sx={{
             bgcolor: "background.paper",
             display: "flex",
-            width: "100%"
+            width: "100%",
           }}
         >
           <Tab label="1" {...a11yProps(0)} />
@@ -84,11 +84,15 @@ export default function CourseContentPagination() {
         </Tabs>
       </Box>
 
-      <TabPanel value={value} index={0} sx={{
+      <TabPanel
+        value={value}
+        index={0}
+        sx={{
           paddingX: "10px",
           width: "850px",
           marginX: "auto",
-        }}>
+        }}
+      >
         <div>
           <div className="text-2xl flex mt-4 text-blue-900">
             <svg
@@ -134,144 +138,6 @@ export default function CourseContentPagination() {
               </div>
               <div className="text-blue-800 text-sm m-3">Viewed</div>
             </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File II - Creating ARM Templates
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to deploy an ARM template using
-                    an existing template downloaded from an Azure Storage
-                    Account.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File III - Manage Azure Storage Using Storage
-                    Explorer
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to access an Image file from
-                    Azure Blob using Azure Storage Explorer.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">M1&2</h3>
-                  <p className="text-xs text-neutral-500">Module 1 and 2</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">M1 to M5 Data</h3>
-                  <p className="text-xs text-neutral-500">M1 to M5 Data</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    M6-NSG & Traffic Manager
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    M6-NSG & Traffic Manager
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
-          <div className="mt-6 mb-3 flex">
-            <div className="text-blue-800 mr-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                fill="currentColor"
-                class="bi bi-rss-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-              </svg>
-            </div>
-            <div className="text-sm items-center">Live Feed</div>
-          </div>
-          <div className="p-4 bg-blue-50 rounded-lg">
-            <h4 className="text-blue-900 mb-2">
-              Submit your project Project Statement to earn the final
-              certification.
-            </h4>
-            <button className="text-blue-300 hover:text-blue-500">
-              Submit Now
-            </button>
-          </div>
-        </div>
-        {/* Banner - 2 */}
-        <div className="shadow-md bg-gradient-to-br mt-4 from-blue-100 to-slate-50 py-5">
-          <div className="px-5 mb-5">
-            <p className="text-sm text-neutral-500">
-              You earn an industry trusted course certificate once you complete
-              the course
-            </p>
-            <h3 className="text-blue-800 font-sans">Preview Certificate</h3>
-          </div>
-          <div className="">
-            <img
-              alt="certi-01"
-              class="w-3/4 mx-auto"
-              src="https://d3ejdag3om7lbm.cloudfront.net/assets/img/certibackgrounds/certi-01-new.jpg"
-            />
           </div>
         </div>
       </TabPanel>
@@ -298,125 +164,6 @@ export default function CourseContentPagination() {
             Azure Virtual Networks and all its related concepts like NIC, NSG,
             Subnets, and more.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 2 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File I - Create A Windows Virtual Machine and
-                    Connect to it
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to deploy a Windows virtual
-                    machine using the Azure Portal and then accessing the IIS
-                    from VM's public IP address.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File II - Create A Linux Virtual Machine and
-                    Connect to it
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to deploy a Linux Virtual
-                    Machine using the Azure Portal and then accessing it using
-                    PowerShell.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File III - Create Blob Storage Using Azure
-                    Portal
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to deploy a Blob Storage using
-                    the Azure Portal and then upload and download files.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2 text-start">
-                    In-Class Demo File V - Configure Azure Networking
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to deploy an Azure Virtual
-                    Network with various components like NIC, NSG, Subnets.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
@@ -441,87 +188,7 @@ export default function CourseContentPagination() {
             Virtual Machine Scale Sets, Azure Load Balancer and Azure
             Application Gateway.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 3 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File II - Create and Configure a VMSS for
-                    Usage Alert
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Create a VMSS for Usage Alert
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-right">
-                Not Viewed
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File IV - Configure Azure Load Balancer
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Configure Azure Load Balancer
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
+          
         </div>
       </TabPanel>
       <TabPanel value={value} index={3}>
@@ -546,87 +213,7 @@ export default function CourseContentPagination() {
             will learn to create, deploy and configure Function App and Logic
             App.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 4 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File II - Create a Web App Instance
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Create a Web App Instance
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-right">
-                Not Viewed
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File III - Use Shell Commands to Create an App
-                    Service Web App
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Use Shell Commands to Create an App Service Web App
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
+         
         </div>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -651,91 +238,6 @@ export default function CourseContentPagination() {
             connectivity. You will also learn about VPN Gateway, ExpressRoute
             and BGP Protocol.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 5 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File II - Define User Defined Routes
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to create and deploy User
-                    Defined Routes for Azure Virtual Network Routing Table.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-right">
-                Not Viewed
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File III - Migrate On-premises Machines to
-                    Azure Using Site Recovery Service
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    In this demo, you will learn to migrate on-premises machines
-                    to Azure using Site Recovery Service.
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={5}>
@@ -754,75 +256,7 @@ export default function CourseContentPagination() {
             </svg>
             <p>Azure Storage Solution and Design Patterns</p>
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 6 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Additional PPT</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
+          
         </div>
       </TabPanel>
       <TabPanel value={value} index={6}>
@@ -847,88 +281,7 @@ export default function CourseContentPagination() {
             deploy, and manage scalable and reliable microservices and
             containers. You will also explore Kubernetes Service (AKS) in Azure.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 7 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File III
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Deploy an Application in ACI
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-right">
-                Not Viewed
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File IV
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Deploy an Application in AKS
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
+         
         </div>
       </TabPanel>
       <TabPanel value={value} index={7}>
@@ -954,121 +307,7 @@ export default function CourseContentPagination() {
             security using End-to-end encryption, Azure confidential computing,
             Azure Key Vault, SSL and TLS communications.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 8 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File II
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Implement Role-Based Access Control
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-right">
-                Not Viewed
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File V
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Add Custom Domains to AD
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File VII
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Deploy Azure VM with ARM Template Referencing Key Vault
-                    Secret
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File VII
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Accessing Key Vault Secrets from Web App
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
+          
         </div>
       </TabPanel>
       <TabPanel value={value} index={8}>
@@ -1092,120 +331,6 @@ export default function CourseContentPagination() {
             integration architecture, develop a methodology for Asynchronous
             Processing, and create apps for Autoscaling.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 9 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File I
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Create a Service Bus Queue
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-right">
-                Not Viewed
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File II
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Deploy Service Bus Topics and Subscriptions
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File III
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Design and Implement Azure Service Bus
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">
-                    In-Class Demo File IV
-                  </h3>
-                  <p className="text-xs text-neutral-500">
-                    Enable Auto Scale Based on CPU Metrics
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={9}>
@@ -1224,90 +349,6 @@ export default function CourseContentPagination() {
             an overview on Azure Log analytics, App Insights service, Azure
             Activity Log and Azure Service Health.
           </div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 10 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Demo I</h3>
-                  <p className="text-xs text-white">.</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Demo II</h3>
-                  <p className="text-xs text-white">.</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Demo III</h3>
-                  <p className="text-xs text-white">.</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={10}>
@@ -1321,78 +362,6 @@ export default function CourseContentPagination() {
             </p>
           </div>
           <div className="my-4 mx-3 text-white">.</div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 11 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Demo II</h3>
-                  <p className="text-xs text-white">.</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Demo III</h3>
-                  <p className="text-xs text-white">.</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={11}>
@@ -1404,66 +373,6 @@ export default function CourseContentPagination() {
             <p className="items-center py-1">Design Azure Migration</p>
           </div>
           <div className="my-4 mx-3 text-white">.</div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 12 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <div className="text-neutral-500 mx-3 text-2xl">
-                  <i class="fa fa-solid fa-folder"></i>
-                </div>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Demo I</h3>
-                  <p className="text-xs text-white">.</p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={12}>
@@ -1475,54 +384,6 @@ export default function CourseContentPagination() {
             <p className="items-center py-1">Design Monitoring (Self-Paced)</p>
           </div>
           <div className="my-4 mx-3 text-white">.</div>
-          <div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Class 13 Recording</h3>
-                  <p className="text-xs text-neutral-500 text-end">
-                    2023-11-05
-                  </p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3 text-left">
-                Class Attended
-              </div>
-            </div>
-            <div className="card my-3 py-3 shadow-sm border border-1 border-slate-100 hover:shadow-lg flex justify-between">
-              <div className="flex m-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-play-circle"
-                  className="text-neutral-500 mx-3"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
-                </svg>
-                <div>
-                  <h3 className="text-neutral-600 mb-2">Presentation</h3>
-                  <p className="text-xs text-neutral-500 text-end"></p>
-                </div>
-              </div>
-              <div className="text-blue-800 text-sm m-3">Viewed</div>
-            </div>
-          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={13}>

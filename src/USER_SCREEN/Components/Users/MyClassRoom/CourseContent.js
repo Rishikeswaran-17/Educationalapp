@@ -58,7 +58,7 @@ const CourseContent = () => {
           sessionStorage.setItem("uploadedFiles", JSON.stringify(uploadedFiles));
      }, [uploadedFiles]);
 
-     const predefinedPath = 'D:\\edureka_clone\\edureka\\ContentsProvider';
+     const predefinedPath = 'E:\\project_syncfusion_dashboard-main\\src\\ContentsProvider';
 
      const handleFileChange = (event) => {
           const files = Array.from(event.target.files);
