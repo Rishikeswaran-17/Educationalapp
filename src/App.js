@@ -1,4 +1,4 @@
-// console.log("datasubcourses =", data); 
+// console.log("datasubcourses =", data);
 //clone-model edureka
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
@@ -52,13 +52,12 @@ import MyclassContent from "./USER_SCREEN/Components/Admin/Body/Myclassroom/Mycl
 import GettingStarted from "./USER_SCREEN/Components/Admin/Body/Myclassroom/GettingStarted/GettingStarted";
 import CourseContent from "./USER_SCREEN/Components/Admin/Body/Myclassroom/CourseContent/CourseContent";
 import StaffComplete from "./STAFF_SCREEN/StaffComplete/StaffComplete";
+import ThemesStaff from "./STAFF_SCREEN/ThemesStaff";
+import Contents from "./STAFF_SCREEN/Staffsidecontent/Contents/Contents";
+import Viewrecording from "./USER_SCREEN/Components/Admin/Body/Myclassroom/CourseContent/ViewRecording/Viewrecording";
 
 const App = () => {
-  const {
-    setCurrentColor,
-    setCurrentMode,
-    currentMode,
-  } = useStateContext();
+  const { setCurrentColor, setCurrentMode, currentMode } = useStateContext();
   const [subcourse, setSubcourse] = useState([]);
   const [trainers, setTrainers] = useState([]);
   const [livecourses, setLivecourses] = useState([]);
@@ -368,8 +367,8 @@ const App = () => {
             />
           ))}
 
-{/*                     user_homepage/coursecontent for main page                                                              */}
-            {livecourses.map((course) => (
+          {/*                     user_homepage/coursecontent for main page                                                              */}
+          {livecourses.map((course) => (
             <Route
               key={course.coursename}
               path={`/user_homepage/my-classroom/coursecontent/page/:page/${encodeURIComponent(
@@ -412,7 +411,7 @@ const App = () => {
               )}`}
               element={
                 <>
-                 <AdminHomepage />
+                  <AdminHomepage />
                   <AdminNavbar />
                   <MyClassroom />
                   <MyclassContent />
@@ -430,6 +429,50 @@ const App = () => {
                   <CourseContent />
                   <FooterUser />
                 </> */}
+{/*                        user_homepage/viewrecording for main page                                                            */}
+          {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`user_homepage/view-recording/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminNavbar />
+                  <Viewrecording />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`user_homepage/view-recording/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminNavbar />
+                  <Viewrecording />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`user_homepage/view-recording/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminNavbar />
+                  <Viewrecording />
+                </>
+              }
+            />
+          ))}
+  {/*                                                          */}
           {mainmenu.map((course) => (
             <Route
               key={course.coursename}
@@ -689,12 +732,70 @@ const App = () => {
               </>
             }
           />
-          {/* <Route path="/master" element={<StaffComplete />} /> */}
+          <Route
+            path="/master"
+            element={
+              <>
+                <ThemesStaff />
+                <StaffComplete />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/course"
+            element={
+              <>
+                <ThemesStaff />
+                <StaffComplete />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/contents"
+            element={
+              <>
+                <ThemesStaff />
+                <Contents />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/students"
+            element={
+              <>
+                <ThemesStaff />
+                <StaffComplete />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/timetable"
+            element={
+              <>
+                <ThemesStaff />
+                <StaffComplete />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/kanbans"
+            element={
+              <>
+                <ThemesStaff />
+                <StaffComplete />
+                <Footer />
+              </>
+            }
+          />
+
         </Routes>
       </BrowserRouter>
     </div>
-    
-    
   );
 };
 

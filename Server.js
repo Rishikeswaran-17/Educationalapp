@@ -351,6 +351,7 @@ app.post('/save-subcourse', async (req, res) => {
     res.status(200).json({ message: 'Subcourse saved successfully' });
   } catch (error) {
     console.log(error);
+
     res.status(500).json({ error: 'Failed to save subcourse' });
   }
 });
@@ -401,7 +402,8 @@ app.post('/insertupdatetrainer', upload.none(), async (req, res) => {
   }
 });
 
-app.post('/insertupdatelearner', async (req, res) => {
+app.post('/insertupdatelearner', upload.none(), async (req, res) => {
+  console.log("Received Data LEARNERS:", req.body);
   const { LearnerID,
     Name,
     Age,
@@ -446,13 +448,14 @@ app.post('/insertupdatelearner', async (req, res) => {
       Progress,
       Payment,
       PhoneNumber,
-      Email );
+      Email);
     res.status(200).json({ message: 'InsertupdateLearner saved successfully' });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Failed to save InsertupdateLearner' });
   }
 });
+
 
 
 app.get('/get-courseContent', async (req, res) => {

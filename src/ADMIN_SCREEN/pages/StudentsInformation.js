@@ -3,6 +3,7 @@ import { Header } from "../components";
 import avatar from "../data/avatar.jpg";
 import { useState } from "react";
 import { useEffect } from "react";
+
 const StudentsInformation = () => {
   // use state hook
   const [learners, setLearners] = useState("");
@@ -21,6 +22,7 @@ const StudentsInformation = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [deleteMode, setDeleteMode] = useState(false);
+
   const fetchLearners = async () => {
     try {
       const response = await fetch("/learners");
@@ -31,9 +33,11 @@ const StudentsInformation = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchLearners();
   }, []);
+
   const handleSubmit = (e) => {
     console.log("Handling form submission...");
     console.log("LearnerID:", learnerid);
@@ -87,6 +91,75 @@ const StudentsInformation = () => {
         console.log("Error:", error);
       });
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (deleteMode) {
+  //     console.log("Deleting learner with ID:", learnerid);
+  //     fetch("/insertupdatelearner", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         LearnerID: learnerid,
+  //         Delete: 1,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((response) => {
+  //         if (response.ok) {
+  //           console.log("Delete successful");
+  //         } else {
+  //           throw new Error("Delete Failed");
+  //         }
+  //         return response.json(); // Parse the response as JSON
+  //       })
+  //       .then((data) => {
+  //         console.log("Response data:", data);
+  //       })
+  //       .catch((error) => {
+  //         console.log("Error:", error);
+  //       });
+  //   } else {
+  //     console.log("Performing insert or update operation...");
+  //     const formData = new FormData();
+  //     formData.append("LearnerID", learnerid);
+  //     formData.append("Name", name);
+  //     formData.append("Age", age);
+  //     formData.append("CoursesEnrolled", coursesenrolled);
+  //     formData.append("Batch", batch);
+  //     formData.append("BatchTimings", batchtimings);
+  //     formData.append("classmodeCategory", classmodeCategory);
+  //     formData.append("sessionmodeCategory", sessionmodecategory);
+  //     formData.append("Grade", grade);
+  //     formData.append("Trainer", trainer);
+  //     formData.append("Progress", progress);
+  //     formData.append("Payment", payment);
+  //     formData.append("PhoneNumber", phoneNumber);
+  //     formData.append("Email", email);
+  //     console.log("Form Data:", Object.fromEntries(formData));
+
+  //     fetch("/insertupdatelearner", {
+  //       method: "POST",
+  //       body: formData,
+  //     })
+  //       .then((response) => {
+  //         if (response.ok) {
+  //           console.log("Request successful");
+  //         } else {
+  //           throw new Error("Upload Failed");
+  //         }
+  //         return response.json(); // Parse the response as JSON
+  //       })
+  //       .then((data) => {
+  //         console.log("Response data:", data);
+  //       })
+  //       .catch((error) => {
+  //         console.log("Error:", error);
+  //       });
+  //   }
+  // };
+
   return (
     <div className='my-3 absolute top-12 left-96 w-9/12'>
     <div className="bg-slate-200 dark:bg-secondary-dark-bg">
@@ -230,6 +303,7 @@ const StudentsInformation = () => {
                     />
                   </div>
                 </div>
+
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-1/3">
                     <label
@@ -249,6 +323,7 @@ const StudentsInformation = () => {
                   </div>
                 </div>
               </form>
+
               <form className="w-full max-w-sm">
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-1/3">
@@ -268,6 +343,7 @@ const StudentsInformation = () => {
                     />
                   </div>
                 </div>
+
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-1/3">
                     <label
@@ -286,6 +362,7 @@ const StudentsInformation = () => {
                     />
                   </div>
                 </div>
+
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-1/3">
                     <label
@@ -358,6 +435,7 @@ const StudentsInformation = () => {
                     />
                   </div>
                 </div>
+
                 <div className="md:flex md:items-end">
                   <div className=" ml-auto">
                     <button
@@ -382,7 +460,7 @@ const StudentsInformation = () => {
             </div>
           </div>
         </div>
-        {/* <div className="w-11/12 mx-auto flex gap-10 mt-10 p-3 justify-center dark:text-white">
+        <div className="w-11/12 mx-auto flex gap-10 mt-10 p-3 justify-center dark:text-white">
           <div className="w-64 h-48 bg-white dark:bg-slate-200 dark:bg-opacity-20 rounded-2xl p-4">
             div1
           </div>
@@ -395,18 +473,19 @@ const StudentsInformation = () => {
           <div className="w-64 h-48 bg-white dark:bg-slate-200 dark:bg-opacity-20 rounded-2xl p-4">
             div4
           </div>
-        </div> */}
-        {/* <div className="w-11/12 mx-auto flex gap-10 my-4 p-3 justify-center dark:text-white">
+        </div>
+        <div className="w-11/12 mx-auto flex gap-10 my-4 p-3 justify-center dark:text-white">
           <div className="w-1/3 h-48 bg-white dark:bg-slate-200 dark:bg-opacity-20 rounded-2xl p-4">
             div1
           </div>
           <div className="w-1/3 h-48 bg-white dark:bg-slate-200 dark:bg-opacity-20 rounded-2xl p-4">
             div2
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
     </div>
   );
 };
+
 export default StudentsInformation;

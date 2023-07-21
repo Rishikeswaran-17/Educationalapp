@@ -28,7 +28,7 @@ const Login = () => {
 
         if (isAdmin) {
           console.log("Redirecting to admin_Homepage reports...");
-          navigate("/admin_homepage"); // Redirect admin to admin_homepage
+          navigate("/reports"); // Redirect admin to admin_homepage
         } else if (isMaster) {
           console.log("Redirecting to master page...");
           navigate("/master"); // Redirect user with email starting with "master." to master page

@@ -626,6 +626,44 @@ export const links = [
   },
 ];
 
+export const Stafflinks = [
+  // {
+  //   title: 'Dashboard',
+  //   links1: [
+  //     {
+  //       name: 'reports',
+  //       icon: <FiShoppingBag />,
+  //     },
+  //   ],
+  // },
+
+  {
+    title: 'Trainer Apps',
+    links1: [
+      {
+        name: 'course',
+        icon: <AiOutlineShoppingCart />,
+      },
+      {
+        name: 'contents',
+        icon: <IoMdContacts />,
+      },
+      {
+        name: 'students',
+        icon: <RiContactsLine />,
+      },
+      {
+        name: 'timetable',
+        icon: <AiOutlineCalendar />,
+      },
+      {
+        name: 'kanbans',
+        icon: <BsKanban />,
+      },
+    ],
+  },
+];
+
 export const cartData = [
   {
     image:

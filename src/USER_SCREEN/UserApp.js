@@ -13,6 +13,11 @@ import AwsCertificationTraining from "./Components/Admin/TrainingPage/AwsCertifi
 import MastersPage from "./Components/Admin/MastersPage/MastersPage";
 import { useEffect } from "react";
 import { useState } from "react";
+import MyClassroom from "./Components/Users/MyClassRoom/MyClassroom";
+import MyclassContent from "./Components/Admin/Body/Myclassroom/MyclassContent/MyclassContent";
+import GettingStarted from "./Components/Admin/Body/Myclassroom/GettingStarted/GettingStarted";
+import CourseContent from "./Components/Admin/Body/Myclassroom/CourseContent/CourseContent";
+import Viewrecording from "./Components/Admin/Body/Myclassroom/CourseContent/ViewRecording/Viewrecording";
 
 const UserApp = () => {
     const [livecourses, setLivecourses] = useState([]);
@@ -84,7 +89,7 @@ const UserApp = () => {
     <div>
       <Router>
         <Routes>
-          <Route
+        <Route
             path="/"
             element={
               <>
@@ -158,6 +163,223 @@ const UserApp = () => {
               }
             />
           ))}
+          {/* next page for user to enter course */}
+
+          {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              path={`/user_homepage/my-classroom/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {/*                        homepage/gettingstarted for main page            */}
+
+          {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/gettingstarted/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/gettingstarted/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              path={`/user_homepage/my-classroom/gettingstarted/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <GettingStarted />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+
+          {/*                     user_homepage/coursecontent for main page                                                              */}
+          {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/coursecontent/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`/user_homepage/my-classroom/coursecontent/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              path={`/user_homepage/my-classroom/coursecontent/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </>
+              }
+            />
+          ))}
+          {/*  <>
+                  <AdminHomepage />
+                  <AdminNavbar />
+                  <MyClassroom />
+                  <MyclassContent />
+                  <CourseContent />
+                  <FooterUser />
+                </> */}
+{/*                        user_homepage/viewrecording for main page                                                            */}
+          {livecourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`user_homepage/view-recording/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminNavbar />
+                  <Viewrecording />
+                </>
+              }
+            />
+          ))}
+          {selfpacedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`user_homepage/view-recording/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminNavbar />
+                  <Viewrecording />
+                </>
+              }
+            />
+          ))}
+          {recommendedcourses.map((course) => (
+            <Route
+              key={course.coursename}
+              path={`user_homepage/view-recording/page/:page/${encodeURIComponent(
+                course.coursename
+              )}`}
+              element={
+                <>
+                  <AdminNavbar />
+                  <Viewrecording />
+                </>
+              }
+            />
+          ))}
+  {/*                                                          */}
           {mainmenu.map((course) => (
             <Route
               key={course.coursename}

@@ -3,21 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import "./CourseContent.css";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import FolderCopyOutlinedIcon from "@mui/icons-material/FolderCopyOutlined";
-import Box from "@mui/material/Box";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import Modal from "@mui/material/Modal";
-import CircularProgress from "@mui/material/CircularProgress";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { PaginationItem } from "@mui/material";
 import { Link, useLocation, useParams } from "react-router-dom";
+
 
 const modules = [
   "Introduction to Microsoft Azure and Its Services",
@@ -48,9 +39,6 @@ const CourseContent = () => {
     docs: null,
   });
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [courseId, setCourseId] = useState("");
-  const [description, setDescription] = useState("");
-  const [chapterid, SetChapterid] = useState("");
   const [coursecontent, setCourseContent] = useState([]);
   const [loading, setLoading] = useState(true); // New state for loading indicator
   const location = useLocation();
@@ -64,141 +52,7 @@ const CourseContent = () => {
   };
   const predefinedPath =
     "E:\\project_syncfusion_dashboard-main\\ContentsProvider";
-
-    const handleFileChange = (event) => {
-      const files = Array.from(event.target.files);
     
-      const videoFiles = files.filter((file) => file.type.includes("video/"));
-      const documentFiles = files.filter((file) => {
-        const fileType = file.type.toLowerCase();
-        const fileExtension = file.name.split(".").pop().toLowerCase();
-        const allowedExtensions = [
-          "doc",
-          "docx",
-          "pdf",
-          "ppt",
-          "pptx",
-          "xlsx",
-          "xls",
-          "txt",
-          "csv",
-          "tsv",
-          "csv2",
-        ];
-    
-        return (
-          fileType.startsWith("application/") &&
-          allowedExtensions.includes(fileExtension)
-        );
-      });
-    
-      const folderFiles = files.filter((file) =>
-        file.webkitRelativePath.includes("/")
-      );
-    
-      const fileUploads = files.map((file) => {
-        const fileName = file.name;
-        const fileExtension = fileName.split(".").pop();
-    
-        const filePath = `${predefinedPath}\\${fileName}`;
-        console.log("File path:", filePath);
-    
-        return {
-          file: file,
-          fileName: fileName,
-          fileExtension: fileExtension,
-          filePath: filePath,
-        };
-      });
-    
-      const mergedFiles = [
-        ...videoFiles,
-        ...documentFiles,
-        ...folderFiles,
-        ...fileUploads,
-      ];
-    
-      setSelectedFiles(mergedFiles);
-    
-      const uploadedFileNames = mergedFiles.map((file) => file.fileName);
-      setUploadedFiles(uploadedFileNames);
-    };
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (selectedFiles.length === 0) {
-        return;
-      }
-    
-      console.log("Data to be sent to server:");
-      console.log("courseId:", courseId);
-      console.log("chapterid:", chapterid);
-      console.log("description:", description);
-      console.log("predefinedPath:", predefinedPath);
-    
-      setUploading(true);
-      setProgress(0);
-      const totalFiles = selectedFiles.length;
-      let uploadedFiles = 0;
-    
-      const updateProgress = () => {
-        const percentage = (uploadedFiles / totalFiles) * 100;
-        setProgress(percentage);
-        if (uploadedFiles === totalFiles) {
-          setUploading(false);
-        }
-      };
-    
-      selectedFiles.forEach((file) => {
-        setTimeout(() => {
-          uploadedFiles++;
-          updateProgress();
-        }, 1000);
-      });
-    
-      const formData = new FormData();
-      selectedFiles.forEach((file) => {
-        formData.append("file", file.file); // Use "file" as the name for the uploaded file
-      });
-    
-      formData.append("courseId", courseId);
-      formData.append("description", description);
-      formData.append("chapterid", chapterid);
-      formData.append("predefinedPath", predefinedPath);
-    
-      console.log("Form data to be sent to server:", formData);
-    
-      fetch("/course-content", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => {
-          if (response.ok) {
-            // Handle success
-          } else {
-            throw new Error("Upload failed");
-          }
-        })
-        .catch((error) => {
-          // Handle error
-        });
-    
-      setSelectedFiles([]);
-    };
-    
-  const handleAddIconClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuItemClick = () => {
-    fileInputRef.current.click();
-    setAnchorEl(null);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-  };
-
   useEffect(() => {
     const storedFiles = sessionStorage.getItem("uploadedFiles");
     if (storedFiles) {
@@ -340,180 +194,8 @@ const CourseContent = () => {
           </div>
         </div>
       </div>
-      {location.pathname.startsWith("/user_homepage") && (
-        <div className="card cardelementaddeditdelete">
-          <TextField
-            className="Textfield"
-            required
-            id="outlined-required"
-            label="CourseID Required"
-            defaultValue=""
-            size="small"
-            onChange={(e) => setCourseId(e.target.value)}
-          />
-          <br />
-          <TextField
-            className="Textfield1"
-            style={{ marginTop: "10px" }}
-            required
-            id="outlined-required"
-            label="Chapter Number Required"
-            defaultValue=""
-            size="small"
-            onChange={(e) => SetChapterid(e.target.value)}
-          />
-          <br />
-          <TextField
-            className="Textfield1"
-            style={{ marginTop: "10px" }}
-            required
-            id="outlined-required"
-            label="Description Required"
-            defaultValue=""
-            size="small"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <Box sx={{ "& > :not(style)": { m: 1 } }}>
-            <Fab color="primary" aria-label="add" onClick={handleAddIconClick}>
-              <AddIcon />
-            </Fab>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleCloseMenu}
-              keepMounted
-            >
-              <MenuItem>
-                <label htmlFor="folder-upload-input">
-                  <input
-                    type="file"
-                    id="folder-upload-input"
-                    ref={(el) => (fileInputRef.current.folder = el)}
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                    directory=""
-                    webkitdirectory=""
-                    multiple
-                  />
-                  <FolderCopyOutlinedIcon sx={{ marginRight: 1 }} />
-                  <em>Folder upload</em>
-                </label>
-              </MenuItem>
-              <MenuItem>
-                <label htmlFor="file-upload-input">
-                  <input
-                    type="file"
-                    id="file-upload-input"
-                    ref={(el) => (fileInputRef.current.file = el)}
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                    multiple
-                    name="file"
-                  />
-                  <AddIcon sx={{ marginRight: 1 }} />
-                  <em>File upload</em>
-                </label>
-              </MenuItem>
-              <MenuItem>
-                <label htmlFor="video-upload-input">
-                  <input
-                    type="file"
-                    id="video-upload-input"
-                    ref={(el) => (fileInputRef.current.video = el)}
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                    accept=".mkv,.mp4,.webm"
-                    name="file"
-                  />
-                  <PlayCircleFilledWhiteOutlinedIcon
-                    sx={{ marginRight: 1 }}
-                  />
-                  <em>Video upload</em>
-                </label>
-              </MenuItem>
-              <MenuItem>
-                <label htmlFor="docs-upload-input">
-                  <input
-                    type="file"
-                    id="docs-upload-input"
-                    ref={(el) => (fileInputRef.current.docs = el)}
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                    accept=".doc,.docx,.pdf,.ppt,.pptx,.xlsx,.xls,.txt,.csv,.tsv,.csv2"
-                    multiple
-                    name="file"
-                  />
-                  <LibraryBooksOutlinedIcon sx={{ marginRight: 1 }} />
-                  <em>Docs upload</em>
-                </label>
-              </MenuItem>
-            </Menu>
-            <Fab
-              color="secondary"
-              aria-label="session"
-              onClick={handleAddPagination}
-            >
-              <AddIcon />
-            </Fab>
-            <Button
-              className="SubmitButton"
-              variant="contained"
-              size="medium"
-              onClick={handleSubmit}
-              onChange={handleFileChange}
-            >
-              Submit
-            </Button>
-          </Box>
-          <Modal
-            open={uploading}
-            aria-labelledby="upload-modal-title"
-            aria-describedby="upload-modal-description"
-          >
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                bgcolor: "background.paper",
-                boxShadow: 24,
-                p: 4,
-              }}
-            >
-              <CircularProgress variant="determinate" value={progress} />
-              <Box sx={{ mt: 2 }}>
-                <p id="upload-modal-description">
-                  Uploading... {progress.toFixed(0)}%
-                </p>
-              </Box>
-            </Box>
-          </Modal>
-        </div>
-      )}
     </>
   );
 };
 
 export default CourseContent;
-
-
- {/* <div  className="coursecontmain">
-                              <a href="/view-recording"  className="courseconttile">
-                                <div  className="courseconthead">
-                                  <div  className="coursetitlesec">
-                                    <span  className="iconmain">
-                                      <PlayCircleFilledWhiteOutlinedIcon style={{ color: "grey" }} />
-                                    </span>
-                                    <span  className="coursetitle">className {pageNumber} Recording
-                                    </span>
-                                  </div>
-                                  <div  className="modulestatussec">
-                                    <span className="status_blue">Viewed
-                                    </span>
-                                  </div>
-                                </div>
-                                <p className="coursecontdesc" id="link-1584129">2023-03-25
-                                </p>
-                              </a>
-                            </div> */}

@@ -459,8 +459,6 @@ const Insertupdatetrainer = async (employeeID, name, designation, courses, hired
   }
 };
 
-
-
 const InsertupdateLearner = async (LearnerID,
   Name,
   Age,
@@ -479,20 +477,20 @@ const InsertupdateLearner = async (LearnerID,
     let pool = await sql.connect(config);
     await pool
       .request()
-      .input("LearnerID",sql.INT,LearnerID)
-      .input("Name",sql.VARCHAR(256),Name)
-      .input("Age",sql.INT,Age)
-      .input("CoursesEnrolled",sql.VARCHAR(sql.MAX),CoursesEnrolled)
-      .input("Batch",sql.VARCHAR(256),Batch)
-      .input("BatchTimings",sql.VARCHAR(256),BatchTimings)
-      .input("classmodeCategory",sql.VARCHAR(256),classmodeCategory)
-      .input("sessionmodeCategory",sql.VARCHAR(256),sessionmodeCategory)
-      .input("Grade",sql.VARCHAR(10),Grade)
-      .input("Trainer",sql.VARCHAR(256),Trainer)
-      .input("Progress",sql.INT,Progress)
-      .input("Payment",sql.VARCHAR(256),Payment)
-      .input("PhoneNumber",sql.VARCHAR(256),PhoneNumber)
-      .input("Email",sql.VARCHAR(256),Email)
+      .input("LearnerID",sql.INT, LearnerID)
+      .input("Name",sql.VARCHAR(256), Name)
+      .input("Age",sql.INT, Age)
+      .input("CoursesEnrolled",sql.VARCHAR(sql.MAX), CoursesEnrolled)
+      .input("Batch",sql.VARCHAR(256), Batch)
+      .input("BatchTimings",sql.VARCHAR(256), BatchTimings)
+      .input("classmodeCategory",sql.VARCHAR(256), classmodeCategory)
+      .input("sessionmodeCategory",sql.VARCHAR(256), sessionmodeCategory)
+      .input("Grade",sql.VARCHAR(10), Grade)
+      .input("Trainer",sql.VARCHAR(256), Trainer)
+      .input("Progress",sql.INT, Progress)
+      .input("Payment",sql.VARCHAR(256), Payment)
+      .input("PhoneNumber",sql.VARCHAR(256), PhoneNumber)
+      .input("Email",sql.VARCHAR(256), Email)
       .execute("InsertAndUpdateLearner");
     console.log("InsertandUpdateLearner Inserted successfully");
   } catch (error) {

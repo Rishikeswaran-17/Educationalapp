@@ -379,8 +379,8 @@ h2 {
 
 
   .cardelementaddeditdelete{
-    margin-left:1530px; /* Added this line to center the card */
-    margin-top:-400px;
+    margin-left:370px; /* Added this line to center the card */
+    margin-top:-750px;
     padding-top: 20px;
     padding-left: 10px;
     padding-right:10px;
@@ -391,9 +391,9 @@ h2 {
   }
   @media only screen and (min-width: 768px) and (max-width: 1199px){
     .cardelementaddeditdelete{
-        margin-left: 940px;
+        margin-left: 340px;
         width:210px;
-        margin-top: -33%;
+        margin-top: -65%;
     }
   }
 

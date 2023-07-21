@@ -25,7 +25,8 @@ const Viewrecording = () => {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const [coursecontent, setCoursecontent] = useState([]);
   const videoRef = useRef(null);
-  const [videoLoaded, setVideoLoaded] = useState(false); // New state to track video load status
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoPath, setVideoPath] = useState(null);
 
   useEffect(() => {
     fetchcoursecontent();
@@ -45,7 +46,7 @@ const Viewrecording = () => {
 
   let sliceStart, sliceEnd;
 
-  if (pathname.includes("/admin_homepage")) {
+  if (pathname.includes("/user_homepage")) {
     sliceStart = pathname.lastIndexOf("/page/") + 6;
     sliceEnd = pathname.lastIndexOf("/page/") + 7;
   } else if (pathname.includes("/homepage")) {
@@ -60,11 +61,13 @@ const Viewrecording = () => {
   console.log(`pathname.slice(${sliceStart}, ${sliceEnd}):`, pathname.slice(sliceStart, sliceEnd));
   console.log("matchingcoursecontent:", matchingcoursecontent);
 
-  console.log("pathname.slice(36,37):", pathname.slice(36, 37));
-  console.log("matchingcoursecontent:", matchingcoursecontent);
-
-  const filePath = matchingcoursecontent?.FilePath;
-  const videoPath = process.env.PUBLIC_URL + filePath?.substring(filePath.lastIndexOf("\\Contents"));
+  useEffect(() => {
+    if (matchingcoursecontent) {
+      const filePath = matchingcoursecontent.FilePath;
+      const path = process.env.PUBLIC_URL + filePath?.substring(filePath.lastIndexOf("/Contents"));
+      setVideoPath(path);
+    }
+  }, [matchingcoursecontent]);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -108,8 +111,6 @@ const Viewrecording = () => {
       }
     };
   }, [videoRef, videoLoaded]);
-  
-  
   
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -225,8 +226,13 @@ const Viewrecording = () => {
           {renderMenu}
         </Box>
       )}
-      {matchingcoursecontent && (
-        <video ref={videoRef}   onLoadedData={() => handleVideoLoaded(matchingcoursecontent.ContentID)} controls  className="videoclass">
+      {matchingcoursecontent && videoPath && (
+        <video
+          ref={videoRef}
+          onLoadedData={handleVideoLoaded}
+          controls
+          className="videoclass"
+        >
           <source src={videoPath} />
           Your browser does not support the video tag.
         </video>
